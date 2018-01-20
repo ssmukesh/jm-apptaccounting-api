@@ -21,7 +21,7 @@ router.get('/requestToken', function (req, res, next) {
 
     var redirecturl = QuickBooks.AUTHORIZATION_URL +
         '?client_id=' + consumerKey +
-        '&redirect_uri=' + encodeURIComponent('https://janhavimeadow-api.herokuapp.com/api/callback') +  //Make sure this path matches entry in application dashboard
+        '&redirect_uri=' + encodeURIComponent('https://janhavimeadows-api.herokuapp.com/api/callback') +  //Make sure this path matches entry in application dashboard
         '&scope=com.intuit.quickbooks.accounting' +
         '&response_type=code' +
         '&state=' + generateAntiForgery(req.session);
@@ -44,7 +44,7 @@ router.get('/callback', function (req, res, next) {
         form: {
             grant_type: 'authorization_code',
             code: req.query.code,
-            redirect_uri: 'https://janhavimeadow-api.herokuapp.com/api/callback'  //Make sure this path matches entry in application dashboard
+            redirect_uri: 'https://janhavimeadows-api.herokuapp.com/api/callback'  //Make sure this path matches entry in application dashboard
         }
     };
 
