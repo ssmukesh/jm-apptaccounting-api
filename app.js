@@ -8,6 +8,7 @@ var session = require('express-session');
 var QuickBooks = require('node-quickbooks');
 
 var qbconnect = require('./routes/qbconnect');
+var qbSDK = require('./routes/qbSDK');
 
 var app = express();
 
@@ -33,5 +34,6 @@ app.get('/home', (req, res) => res.render('pages/home'));
 app.get('/error', (req, res) => res.render('pages/qbconnect-error'));
 
 app.use('/api', qbconnect);
+app.use('/api/qbSDK', qbSDK);
 
 module.exports = app;
