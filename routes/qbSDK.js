@@ -51,6 +51,7 @@ router.get('/getCompanyInfo', function (req, res, next) {
     else {
         commonLogs.validToken = false;
         sessionManager.saveCommonLogs(req.session, commonLogs);
+        return res.json({ status: { statusType: "JMA-ST-151", error: null }, statusCode: 200 });
     }
 
 });

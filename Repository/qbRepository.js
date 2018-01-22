@@ -64,7 +64,7 @@ class qbRepository {
     deleteQBConfig(body, callback) {
         console.log('*** QBConfigRepository.deleteQBConfig');
 
-        QBConfig.remove({ 'realmId': body.realmId }, (err, qbConfig) => {
+        QBConfig.remove({}, (err, qbConfig) => {
             if (err) {
                 console.log(`*** QBConfigRepository.deleteQBConfig error: ${err}`);
                 return callback(err, null);

@@ -1,5 +1,6 @@
 var Tokens = require('csrf');
 var csrf = new Tokens();
+var QuickBooks = require('node-quickbooks');
 
 class helper {
 
@@ -18,7 +19,7 @@ class helper {
                 qbConfig.access_token, /* oAuth access token */
                 false, /* no token secret for oAuth 2.0 */
                 qbConfig.realmId,
-                true, /* use a sandbox account */
+                false, /* use a sandbox account */
                 true, /* turn debugging on */
                 14, /* minor version */
                 '2.0', /* oauth version */

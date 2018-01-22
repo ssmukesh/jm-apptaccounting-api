@@ -64,7 +64,6 @@ router.post('/connecttojm', function (req, res) {
             }
         }
 
-
     });
 
 });
