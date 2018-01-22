@@ -11,6 +11,7 @@ const mongoose = require('mongoose'),
     UserInfo = require('../models/userInfo');
 
 const userRepository = require('../Repository/userRepository');
+const qbRepository = require('../Repository/qbRepository');
 
 router.post('/saveuserinfo', function (req, res) {
     console.log("API: saveuserinfo");
@@ -47,7 +48,16 @@ router.post('/connecttojm', function (req, res) {
             userInfo = data;
 
             if (userInfo && userInfo.password === req.body.password) {
-                return res.json({ status: { statusType: "JMA-ST-1002", error: null }, statusCode: 200 });
+
+                qbRepository.getQBConfig(req.session, (err, data) => {
+                    if (err) {
+                        return res.json({ status: { statusType: "JMA-ST-162", error: err }, statusCode: 200 });
+                    }
+                    else {
+                        return res.json({ status: { statusType: "JMA-ST-1002", error: null }, statusCode: 200 });
+                    }
+                });
+
             }
             else {
                 return res.json({ status: { statusType: "JMA-ST-113", error: null }, statusCode: 200 });
