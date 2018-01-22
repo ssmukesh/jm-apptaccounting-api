@@ -9,8 +9,11 @@ var QuickBooks = require('node-quickbooks');
 
 var qbconnect = require('./routes/qbconnect');
 var qbSDK = require('./routes/qbSDK');
+var userInfo = require('./routes/userInfo');
 
 var app = express();
+
+const database = require('./DAL/database');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,5 +38,31 @@ app.get('/error', (req, res) => res.render('pages/qbconnect-error'));
 
 app.use('/api', qbconnect);
 app.use('/api/qbSDK', qbSDK);
+app.use('/api/userInfo', userInfo);
+
+function initCustomMiddleware() {
+    if (process.platform === "win32") {
+        require("readline").createInterface({
+            input: process.stdin,
+            output: process.stdout
+        }).on("SIGINT", () => {
+            console.log('SIGINT: Closing MongoDB connection');
+            database.close();
+        });
+    }
+
+    process.on('SIGINT', () => {
+        console.log('SIGINT: Closing MongoDB connection');
+        database.close();
+    });
+}
+
+
+function initDb() {
+    database.open(() => { });
+}
+
+initCustomMiddleware();
+initDb();
 
 module.exports = app;
