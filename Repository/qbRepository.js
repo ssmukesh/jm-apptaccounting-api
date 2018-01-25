@@ -22,12 +22,15 @@ class qbRepository {
 
         this.deleteQBConfig(qbConfig, (err, data) => {
             if (err) {
+                var configCode = helper.getConfig_Codes("error", "database", "2040");
+                console.log(configCode + `*** deleteQBConfig error: ${err}`);
                 return callback(err, null);
             }
             else {
                 qbConfig.save((err, qbConfig) => {
                     if (err) {
-                        console.log(`*** QBConfigRepository insertQBConfig error: ${err}`);
+                        var configCode = helper.getConfig_Codes("error", "database", "2020");
+                        console.log(configCode + `*** QBConfigRepository insertQBConfig error: ${err}`);
                         return callback(err, null);
                     }
                     callback(null, qbConfig);
@@ -46,7 +49,8 @@ class qbRepository {
 
             QBConfig.find({}, (err, qbConfig) => {
                 if (err) {
-                    console.log(`*** QBConfigRepository.getQBConfig error: ${err}`);
+                    var configCode = helper.getConfig_Codes("error", "database", "2030");
+                    console.log(configCode + `*** QBConfigRepository.getQBConfig error: ${err}`);
                     return callback(err);
                 }
 
@@ -66,7 +70,8 @@ class qbRepository {
 
         QBConfig.remove({}, (err, qbConfig) => {
             if (err) {
-                console.log(`*** QBConfigRepository.deleteQBConfig error: ${err}`);
+                var configCode = helper.getConfig_Codes("error", "database", "2040");
+                console.log(configCode + `*** QBConfigRepository.deleteQBConfig error: ${err}`);
                 return callback(err, null);
             }
             callback(null, qbConfig);

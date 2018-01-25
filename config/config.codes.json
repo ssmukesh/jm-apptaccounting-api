@@ -1,0 +1,135 @@
+{
+    "AppMessageCodes": {
+        "success": {
+            "database": [
+                {
+                    "code": "1000",
+                    "message": "getUserInfoByEmail",
+                    "detail": "getUserInfoByEmail"
+                },
+                {
+                    "code": "1010",
+                    "message": "saveuserinfo",
+                    "detail": "saveuserinfo"
+                },
+                {
+                    "code": "1020",
+                    "message": "saveQBConfig",
+                    "detail": "saveQBConfig"
+                },
+                {
+                    "code": "1030",
+                    "message": "getQBConfig",
+                    "detail": "getQBConfig"
+                },
+                {
+                    "code": "1040",
+                    "message": "deleteQBConfig",
+                    "detail": "deleteQBConfig"
+                }
+            ],
+            "API": [
+                {
+                    "code": "1050",
+                    "message": "saveuserinfo",
+                    "detail": "saveuserinfo"
+                },
+                {
+                    "code": "1060",
+                    "message": "connecttojm",
+                    "detail": "connecttojm"
+                },
+                {
+                    "code": "1090",
+                    "message": "requestToken",
+                    "detail": "requestToken"
+                },
+                {
+                    "code": "1100",
+                    "message": "refreshtoken",
+                    "detail": "refreshtoken"
+                },
+                {
+                    "code": "1110",
+                    "message": "callback",
+                    "detail": "callback"
+                }
+            ],
+            "QuickBooks": [
+                {
+                    "code": "1120",
+                    "message": "getCompanyInfo",
+                    "detail": "getCompanyInfo"
+                }
+            ]
+        },
+        "error": {
+            "database": [
+                {
+                    "code": "2000",
+                    "message": "getUserInfoByEmail",
+                    "detail": "getUserInfoByEmail"
+                },
+                {
+                    "code": "2010",
+                    "message": "saveuserinfo",
+                    "detail": "saveuserinfo"
+                },
+                {
+                    "code": "2020",
+                    "message": "saveQBConfig",
+                    "detail": "saveQBConfig"
+                },
+                {
+                    "code": "2030",
+                    "message": "getQBConfig",
+                    "detail": "getQBConfig"
+                },
+                {
+                    "code": "2040",
+                    "message": "deleteQBConfig",
+                    "detail": "deleteQBConfig"
+                }
+            ],
+            "API": [
+                {
+                    "code": "2050",
+                    "message": "saveuserinfo",
+                    "detail": " "
+                },
+                {
+                    "code": "2060",
+                    "message": "connecttojm",
+                    "detail": "Please contact the server administrator, you@example.com and inform them of the time the error occurred, and anything you might have done that may have caused the error."
+                },
+                {
+                    "code": "2090",
+                    "message": "requestToken",
+                    "detail": "Please contact the server administrator, you@example.com and inform them of the time the error occurred, and anything you might have done that may have caused the error."
+                },
+                {
+                    "code": "2100",
+                    "message": "refreshtoken",
+                    "detail": "Please contact the server administrator, you@example.com and inform them of the time the error occurred, and anything you might have done that may have caused the error."
+                },
+                {
+                    "code": "2110",
+                    "message": "callback",
+                    "detail": "Please contact the server administrator, you@example.com and inform them of the time the error occurred, and anything you might have done that may have caused the error."
+                },
+                {
+                    "code": "2120",
+                    "message": "connecttojm",
+                    "detail": "You have entered an incorrect email or Password. Please enter your information again."
+                }
+            ],
+            "QuickBooks": [
+                {
+                    "code": "2130",
+                    "message": "getCompanyInfo",
+                    "detail": "Please contact the server administrator, you@example.com and inform them of the time the error occurred, and anything you might have done that may have caused the error."
+                }
+            ]
+        }
+    }
+}

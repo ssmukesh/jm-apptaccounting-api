@@ -41,7 +41,8 @@ router.get('/refreshtoken', function (req, res, next) {
     qbRepository.getQBConfig(req.session, (err, data) => {
 
         if (err) {
-            return res.json({ status: { statusType: "JMA-ST-162", error: err }, statusCode: 200 });
+            var configCode = helper.getConfig_Codes("error", "API", "2100");
+            return res.json({ status: configCode, statusCode: 200 });
         }
         else {
             var qbConfig = sessionManager.getQBConfig(req.session);
@@ -63,7 +64,8 @@ router.get('/refreshtoken', function (req, res, next) {
 
             request.post(postBody, function (err, response, data) {
                 if (err || response.statusCode != 200) {
-                    return res.json({ status: { statusType: "JMA-ST-162", error: err }, statusCode: 200 });
+                    var configCode = helper.getConfig_Codes("error", "API", "2100");
+                    return res.json({ status: configCode, statusCode: 200 });
                 }
 
                 var accessToken = JSON.parse(response.body);
@@ -74,10 +76,12 @@ router.get('/refreshtoken', function (req, res, next) {
                 qbRepository.saveQBConfig(qbConfig, (err, data) => {
                     if (err) {
                         console.log('*** saveQBConfig error: ' + util.inspect(err));
-                        return res.json({ status: { statusType: "JMA-ST-162", error: err }, statusCode: 200 });
+                        var configCode = helper.getConfig_Codes("error", "API", "2100");
+                        return res.json({ status: configCode, statusCode: 200 });
                     } else {
                         console.log('*** QBConfig saved successfully!');
-                        return res.json({ status: { statusType: "JMA-ST-1002", error: null }, statusCode: 200 });
+                        var configCode = helper.getConfig_Codes("success", "API", "1100");
+                        return res.json({ status: configCode, statusCode: 200 });
                     }
                 });
             });

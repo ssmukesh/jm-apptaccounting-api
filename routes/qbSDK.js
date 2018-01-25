@@ -5,13 +5,13 @@ var QuickBooks = require('node-quickbooks');
 var Tokens = require('csrf');
 var csrf = new Tokens();
 const util = require('util');
+const helper = require('../Utils/helper');
+const sessionManager = require('../Utils/sessionManager');
 
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     CommonLogs = require('../models/commonLogs');
 
-const helper = require('../Utils/helper');
-const sessionManager = require('../Utils/sessionManager');
 
 
 router.get('/getCompanyInfo', function (req, res, next) {
@@ -28,22 +28,15 @@ router.get('/getCompanyInfo', function (req, res, next) {
             if (err) {
                 commonLogs.validToken = false;
                 sessionManager.saveCommonLogs(req.session, commonLogs);
-                return res.json({ status: { statusType: "JMA-ST-151", error: util.inspect(err) }, statusCode: 200 });
+                var configCode = helper.getConfig_Codes("error", "API", "2130");
+                return res.json({ status: configCode, statusCode: 200 });
             }
             else {
 
                 commonLogs.validToken = true;
                 sessionManager.saveCommonLogs(req.session, commonLogs);
-
-                return res.json({
-                    status:
-                        {
-                            statusType: "JMA-ST-1501",
-                            error: util.inspect(err),
-                            QBOData: companyInfo
-                        },
-                    statusCode: 200
-                });
+                var configCode = helper.getConfig_Codes("success", "API", "1120");
+                return res.json({ status: configCode, QBOData: companyInfo, statusCode: 200 });
             }
         });
 
@@ -51,7 +44,8 @@ router.get('/getCompanyInfo', function (req, res, next) {
     else {
         commonLogs.validToken = false;
         sessionManager.saveCommonLogs(req.session, commonLogs);
-        return res.json({ status: { statusType: "JMA-ST-151", error: null }, statusCode: 200 });
+        var configCode = helper.getConfig_Codes("error", "API", "2130");
+        return res.json({ status: configCode, statusCode: 200 });
     }
 
 });

@@ -2,6 +2,7 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     UserInfo = require('../models/userInfo');
 
+const helper = require('../Utils/helper');
 const util = require('util');
 
 class userRepository {
@@ -15,7 +16,8 @@ class userRepository {
 
         userInfo.save((err, userInfo) => {
             if (err) {
-                console.log(`*** QBConfigRepository saveUserInfo error: ${err}`);
+                var configCode = helper.getConfig_Codes("error", "database", "2010");
+                console.log(configCode + `*** QBConfigRepository saveUserInfo error: ${err}`);
                 return callback(err, null);
             }
             callback(null, userInfo);
@@ -28,10 +30,14 @@ class userRepository {
 
         UserInfo.findOne({ 'email': email }, (err, userInfo) => {
             if (err) {
-                console.log(`*** QBConfigRepository.getUserInfoByEmail error: ${err}`);
+                var configCode = helper.getConfig_Codes("error", "database", "2000");
+                console.log(configCode + `*** QBConfigRepository.getUserInfoByEmail error: ${err}`);
                 return callback(err);
             }
-            callback(null, userInfo);
+            else {
+                callback(null, userInfo);
+            }
+
         });
 
     }

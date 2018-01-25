@@ -5,6 +5,7 @@ var QuickBooks = require('node-quickbooks');
 var Tokens = require('csrf');
 var csrf = new Tokens();
 const util = require('util');
+const helper = require('../Utils/helper');
 
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema,
@@ -22,12 +23,14 @@ router.post('/saveuserinfo', function (req, res) {
 
     userRepository.saveUserInfo(req.body, (err, data) => {
         if (err) {
+            var configCode = helper.getConfig_Codes("error", "API", "2050");
             console.log('*** saveuserinfo error: ' + util.inspect(err));
-            return res.json({ status: { type: "error", msg: util.inspect(err) }, statusCode: 200 });
+            return res.json({ status: configCode, statusCode: 200 });
         } else {
+            var configCode = helper.getConfig_Codes("success", "API", "1050");
             console.log('*** saveuserinfo ok');
             userInfo = data;
-            return res.json({ status: { type: "success", msg: "saveuserinfo successfully!" }, statusCode: 200 });
+            return res.json({ status: configCode, statusCode: 200 });
         }
     });
 
@@ -41,8 +44,9 @@ router.post('/connecttojm', function (req, res) {
     userRepository.getUserInfoByEmail(req.body.email, (err, data) => {
 
         if (err) {
+            var configCode = helper.getConfig_Codes("error", "API", "2060");
             console.log('*** getUserInfoByEmail error: ' + util.inspect(err));
-            return res.json({ status: { statusType: "JMA-ST-111", error: util.inspect(err) }, statusCode: 200 });
+            return res.json({ status: configCode, statusCode: 200 });
         } else {
             console.log('*** getUserInfoByEmail ok');
             userInfo = data;
@@ -51,16 +55,19 @@ router.post('/connecttojm', function (req, res) {
 
                 qbRepository.getQBConfig(req.session, (err, data) => {
                     if (err) {
-                        return res.json({ status: { statusType: "JMA-ST-162", error: err }, statusCode: 200 });
+                        var configCode = helper.getConfig_Codes("error", "API", "2060");
+                        return res.json({ status: configCode, statusCode: 200 });
                     }
                     else {
-                        return res.json({ status: { statusType: "JMA-ST-1002", error: null }, statusCode: 200 });
+                        var configCode = helper.getConfig_Codes("success", "API", "1060");
+                        return res.json({ status: configCode, statusCode: 200 });
                     }
                 });
 
             }
             else {
-                return res.json({ status: { statusType: "JMA-ST-113", error: null }, statusCode: 200 });
+                var configCode = helper.getConfig_Codes("error", "API", "2120");
+                return res.json({ status: configCode, statusCode: 200 });
             }
         }
 
