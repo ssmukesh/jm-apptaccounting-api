@@ -128,6 +128,11 @@
                     "code": "2130",
                     "message": "getCompanyInfo",
                     "detail": "Please contact the server administrator, you@example.com and inform them of the time the error occurred, and anything you might have done that may have caused the error."
+                },
+                {
+                    "code": "2140",
+                    "message": "getCompanyInfo",
+                    "detail": "Please contact the server administrator, you@example.com and inform them of the time the error occurred, and anything you might have done that may have caused the error."
                 }
             ]
         }

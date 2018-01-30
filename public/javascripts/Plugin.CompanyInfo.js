@@ -20,27 +20,34 @@
         this.init();
     }
 
+    function _API_getCompanyInfo() {
+
+        $.get("/api/qbSDK/getCompanyInfo", function (data) {
+
+            if (data.QBOData != null && data.QBOData != undefined) {
+                var companyInfo = data.QBOData;
+                $("#companyName").val(companyInfo.CompanyName);
+                $("#username").val(companyInfo.Email.Address);
+                $("#email").val(companyInfo.Email.Address);
+                $("#address").val(companyInfo.CustomerCommunicationAddr.Line1);
+                $("#address2").val(companyInfo.CustomerCommunicationAddr.City);
+                $("#zip").val(companyInfo.CustomerCommunicationAddr.PostalCode);
+            }
+
+        });
+
+    }
+
+    function _API_saveQBConfig() {
+        $.get("/api/userInfo/refreshQBConfig", function (data) {
+            _API_getCompanyInfo();
+        });
+    }
+
     // Avoid Plugin.prototype conflicts
     $.extend(Plugin.prototype, {
         init: function () {
-            this.API_getCompanyInfo();
-        },
-        API_getCompanyInfo: function () {
-
-            $.get("/api/qbSDK/getCompanyInfo", function (data) {
-
-                if (data.status.QBOData != null && data.status.QBOData != undefined) {
-                    var companyInfo = data.status.QBOData;
-                    $("#companyName").val(companyInfo.CompanyName);
-                    $("#username").val(companyInfo.Email.Address);
-                    $("#email").val(companyInfo.Email.Address);
-                    $("#address").val(companyInfo.CustomerCommunicationAddr.Line1);
-                    $("#address2").val(companyInfo.CustomerCommunicationAddr.City);
-                    $("#zip").val(companyInfo.CustomerCommunicationAddr.PostalCode);
-                }
-
-            });
-
+            _API_saveQBConfig();
         }
     });
 

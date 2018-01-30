@@ -75,4 +75,17 @@ router.post('/connecttojm', function (req, res) {
 
 });
 
+router.get('/refreshQBConfig', function (req, res, next) {
+    qbRepository.getQBConfig(req.session, (err, data) => {
+        if (err) {
+            var configCode = helper.getConfig_Codes("error", "API", "2060");
+            return res.json({ status: configCode, statusCode: 200 });
+        }
+        else {
+            var configCode = helper.getConfig_Codes("success", "API", "1060");
+            return res.json({ status: configCode, statusCode: 200 });
+        }
+    });
+});
+
 module.exports = router;
