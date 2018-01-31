@@ -66,6 +66,11 @@
         "error": {
             "database": [
                 {
+                    "code": "0002",
+                    "message": "databaseerror",
+                    "detail": "Please contact the server administrator, you@example.com and inform them of the time the error occurred, and anything you might have done that may have caused the error."
+                },
+                {
                     "code": "2000",
                     "message": "getUserInfoByEmail",
                     "detail": "getUserInfoByEmail"
@@ -93,6 +98,11 @@
             ],
             "API": [
                 {
+                    "code": "0000",
+                    "message": "session expired",
+                    "detail": "Please contact the server administrator, you@example.com and inform them of the time the error occurred, and anything you might have done that may have caused the error."
+                },
+                {
                     "code": "2050",
                     "message": "saveuserinfo",
                     "detail": " "
@@ -100,7 +110,7 @@
                 {
                     "code": "2060",
                     "message": "connecttojm",
-                    "detail": "Please contact the server administrator, you@example.com and inform them of the time the error occurred, and anything you might have done that may have caused the error."
+                    "detail": "You have entered an incorrect email or Password. Please enter your information again."
                 },
                 {
                     "code": "2090",
@@ -125,8 +135,8 @@
             ],
             "QuickBooks": [
                 {
-                    "code": "2130",
-                    "message": "getCompanyInfo",
+                    "code": "0001",
+                    "message": "refresh Token",
                     "detail": "Please contact the server administrator, you@example.com and inform them of the time the error occurred, and anything you might have done that may have caused the error."
                 },
                 {

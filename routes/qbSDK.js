@@ -30,7 +30,7 @@ router.get('/getCompanyInfo', function (req, res, next) {
             if (err) {
                 commonLogs.validToken = false;
                 sessionManager.saveCommonLogs(req.session, commonLogs);
-                var configCode = helper.getConfig_Codes("error", "QuickBooks", "2130");
+                var configCode = helper.getConfig_Codes("error", "QuickBooks", "0001");
                 return res.json({ status: configCode, statusCode: 200 });
             }
             else {
@@ -45,10 +45,12 @@ router.get('/getCompanyInfo', function (req, res, next) {
     else {
         commonLogs.validToken = false;
         sessionManager.saveCommonLogs(req.session, commonLogs);
-        var configCode = helper.getConfig_Codes("error", "QuickBooks", "2140");
+        var configCode = helper.getConfig_Codes("error", "API", "0000");
         return res.json({ status: configCode, statusCode: 200 });
     }
 
 });
+
+
 
 module.exports = router;
