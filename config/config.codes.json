@@ -60,6 +60,11 @@
                     "code": "1120",
                     "message": "getCompanyInfo",
                     "detail": "getCompanyInfo"
+                },
+                {
+                    "code": "1130",
+                    "message": "findCustomers",
+                    "detail": "findCustomers"
                 }
             ]
         },
